@@ -1,12 +1,38 @@
 <!-- App.vue -->
 <script setup lang="ts">
-// typescript code goes here
+import "@/assets/font-awesome";
+import "@/assets/styles/style.scss";
+import AppHeader from "./components/AppHeader.vue";
 </script>
 
 <template>
-  <!-- template markup will go here -->
+  <div class="app container-fluid">
+    <!-- header -->
+    <div class="row app-navbar">
+      <div class="col px-0"><app-header /></div>
+    </div>
+
+    <div class="row">
+      <!-- left panel -->
+      <div class="col-md-2 border sidebar">sidebar</div>
+
+      <!-- main section -->
+      <div class="col-md-8 border">main content</div>
+
+      <!-- right panel -->
+      <div class="col-md-2 border sidebar">sidebar</div>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-/** our root level styles can go here */
+<style lang="scss">
+@import "@/assets/styles/variables";
+
+.sidebar {
+  height: $max-height;
+}
+
+.app-navbar {
+  height: $navbar-height;
+}
 </style>
