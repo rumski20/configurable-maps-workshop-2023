@@ -3,24 +3,41 @@
 import "@/assets/font-awesome";
 import "@/assets/styles/style.scss";
 import AppHeader from "./components/AppHeader.vue";
+import { useAppStore } from "@/stores/app";
+
+const appStore = useAppStore();
 </script>
 
 <template>
   <div class="app container-fluid">
     <!-- header -->
     <div class="row app-navbar">
-      <div class="col px-0"><app-header /></div>
+      <div class="col px-0">
+        <AppHeader />
+      </div>
     </div>
 
-    <div class="row">
+    <div class="row main-content-row">
       <!-- left panel -->
-      <div class="col-md-2 border sidebar">sidebar</div>
+      <div
+        v-if="appStore.leftPaneOpen && !appStore.isSmallDevice"
+        class="col-md-3 col-xl-2 border sidebar"
+        style="background-color: orange"
+      >
+        sidebar
+      </div>
 
       <!-- main section -->
-      <div class="col-md-8 border">main content</div>
+      <div class="col" style="background-color: green">main content</div>
 
       <!-- right panel -->
-      <div class="col-md-2 border sidebar">sidebar</div>
+      <div
+        v-if="appStore.rightPaneOpen && !appStore.isSmallDevice"
+        class="col-md-3 col-xl-2 border sidebar"
+        style="background-color: red"
+      >
+        sidebar
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +45,7 @@ import AppHeader from "./components/AppHeader.vue";
 <style lang="scss">
 @import "@/assets/styles/variables";
 
-.sidebar {
+.main-content-row {
   height: $max-height;
 }
 
