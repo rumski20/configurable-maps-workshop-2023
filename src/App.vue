@@ -1,15 +1,20 @@
 <!-- src/App.vue -->
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
-import { useAppStore } from "./stores";
 import "@/assets/font-awesome";
 import "@/assets/styles/style.scss";
+
+import { defineAsyncComponent } from "vue";
+import { useAppStore } from "./stores";
+import { useColorTheme } from "@/composables";
 
 import Spinner from "./components/Spinner.vue";
 import AppHeader from "@/components/AppHeader.vue";
 
 const MapView = defineAsyncComponent(() => import("@/views/MapView.vue"));
 const appStore = useAppStore();
+
+const { setThemeColors } = useColorTheme();
+setThemeColors(appStore.config.app.theme!);
 </script>
 
 <template>
